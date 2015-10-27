@@ -40,6 +40,8 @@ void change_text_color();
 
 void clearscreen();
 
+void playsound();
+
 void timertick();
 
 /* Funciones de la catedra */
@@ -58,4 +60,3 @@ void printBase(int value, int base);
 int uintToBase(int value, char * buffer, int base);
 
 #endif
-

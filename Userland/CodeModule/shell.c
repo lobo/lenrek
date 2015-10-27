@@ -3,6 +3,7 @@
 #include "RTCuserspace.h"
 #include "string.h"
 
+#define CANT_COMMANDS_SHELL 7
 
 typedef void (*fptr)(void);
 
@@ -31,7 +32,7 @@ void shell()
 		printString(PROMPT);
 		getString(command_buffer, BUFFERLENGTH);
 
-		for(i = 0 ; i < 6 && command == NOT_VALID ; i++)
+		for(i = 0 ; i < CANT_COMMANDS_SHELL && command == NOT_VALID ; i++)
 		{
 			if( parse_command(shell_commands[i], command_buffer) )
 			{

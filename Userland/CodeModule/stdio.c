@@ -7,7 +7,7 @@ static char buffer[1024] = { 0 };
 
 
 /* llama al system call read para recibir el estado del input buffer */
-void get_input(char * c) 
+void get_input(char * c)
 {
 	read(1, c); // system call
 }
@@ -16,7 +16,7 @@ void get_input(char * c)
 char getChar()
 {
 	char c[10];
-	
+
 	getString(buffer, 1);
 
 	return buffer[0];
@@ -25,12 +25,12 @@ char getChar()
 /* llama al system call write con longitud 1 */
 void putChar(const char c)
 {
-	write(1, &c); // system call 
+	write(1, &c); // system call
 }
 
 /* imprime un string mediante system call write */
 void printString(const char * str)
-{ 
+{
 	write(strlen(str), (void *)str); // system call
 }
 
@@ -43,7 +43,7 @@ void getString(char *buffer, const int size)
 {
 	int flag = ON, len = 0;
 	char input_char;
-	
+
 	while(flag == ON)
 	{
 		get_input(&input_char);
@@ -53,7 +53,7 @@ void getString(char *buffer, const int size)
 			if( ! (input_char == '\b' && len == 0) )
 			{
 				putChar(input_char);
-				
+
 				if(input_char != '\b')
 					buffer[len++] = input_char;
 
@@ -68,7 +68,7 @@ void getString(char *buffer, const int size)
 	}
 
 	buffer[len++] = 0;
-} 
+}
 
 /* recibe un string mediante getString y lo traduce en un integer. Devuelve 0
    si el string contiene caracteres que no son digitos */
@@ -83,7 +83,7 @@ int getInt(int * num, const int size)
 	{
 		if(! isdigit(buffer[i]) )
 			return 0;
-		
+
 		n = n*10;
 		n += buffer[i] - '0';
 		i++;
@@ -122,7 +122,7 @@ int isdigit(unsigned char c)
 int htoi(const char *str, unsigned long *result)
 {
 	int c;
-	
+
 	if (str[0] == '0' && str[1] == 'x')
 		str += 2;
 
@@ -149,13 +149,13 @@ void printf(const char *fmt, ...)
 	char * s;
 	va_list va;
 	char ch;
-	
-	va_start(va, fmt); //Asigno en va un puntero a la lista de argumentos	
-	
+
+	va_start(va, fmt); //Asigno en va un puntero a la lista de argumentos
+
 	while ( (ch = *(fmt++)) )
 	{
 		while ( ch != '%' && ch != 0 && ch != '\n' )
-		{	
+		{
 			putChar(ch);
 			ch = *(fmt++);
 		}
@@ -166,29 +166,29 @@ void printf(const char *fmt, ...)
 			{
 				case 0: putChar('%'); return;
 				case 'u':
-				case 'd': 
+				case 'd':
 				case 'D':
-				case 'x': 
+				case 'x':
 				case 'X':
 					//Levanto el siguiente argumento sabiendo que es un int
-					num = (int)va_arg(va, int); 
+					num = (int)va_arg(va, int);
 					//Si el numero pasado por arg en negativo imprimo '-'
-					if ( num < 0) 
+					if ( num < 0)
 					{
 							num = -num;
-							putChar('-');						
-					}			
+							putChar('-');
+					}
 				   if(ch == 'u' || ch == 'd');
 						printDec(num);
 					if(ch == 'x' || ch == 'X')
 						printHex(num);
 					break;
-				case 'c' : 
+				case 'c' :
 					//Levanto el siguiente argumento sabiendo que es un char
-					c = (char)va_arg(va, int); 
+					c = (char)va_arg(va, int);
 					putChar(c);
 					break;
-				case 's' : 
+				case 's' :
 					s = (char *)va_arg(va, int);
 					printString(s);
 					break;
@@ -210,16 +210,16 @@ int scanf(const char *fmt, ...)
     char * c = 0;
     char * s = 0;
     char hexa_string[100];
- 
+
     va_list argp;
     va_start(argp, fmt);
 
-    for(i = 0; fmt[i] != '\0'; i++) 
+    for(i = 0; fmt[i] != '\0'; i++)
     {
-        if(fmt[i] == '%') 
+        if(fmt[i] == '%')
         {
             i++;
-            switch(fmt[i]) 
+            switch(fmt[i])
             {
                 case '\0':
                     printString("Formato invalido.\n");
@@ -253,7 +253,7 @@ int scanf(const char *fmt, ...)
                 default:
                     printString("Formato invalido.\n");
             }
-        } 
+        }
 
     }
 
@@ -276,12 +276,12 @@ void change_text_color()
 	printString("5 - Violeta     D - Rosa\n");
 	printString("6 - Marron      E - Amarillo\n");
 	printString("7 - Gris Claro  F - Blanco\n");
-	
+
 	printString("Elija un color de texto: ");
 	getString(colorbuff, 100);
 	n = colorbuff[0];
 	if(n >= '0' && n <= '9')
-	{			
+	{
 		color_texto = colorbuff[0] - '0';
 		valores += color_texto;
 	}
@@ -292,12 +292,12 @@ void change_text_color()
 	}
 	else
 		INPUT_ERROR_EXIT
-	
+
 	printString("Elija un color de fondo: ");
 	getString(colorbuff, 100);
 	n = colorbuff[0];
 	if(n >= '0' && n <= '9')
-	{			
+	{
 		color_fondo = n - '0';
 		valores += color_fondo*16;
 	}
@@ -320,7 +320,7 @@ void change_text_color()
 	{
 		printString("El texto y el fondo tienen que");
 		printString(" tener colores distintos!\n");
-		return ;	
+		return ;
 	}
 
 	change_color(valores);  // system call
@@ -350,7 +350,7 @@ void saveDec(int * value, char * buf)
 void saveHex(int * value, char * buf)
 {
 	uintToBase(value, buf, 16);
-	*value = stoi(buf);	
+	*value = stoi(buf);
 }
 
 void printDec(int value)
@@ -405,4 +405,11 @@ int uintToBase(int value, char * buffer, int base)
 	}
 
 	return digits;
+}
+
+/* This function plays a sound */
+
+void playsound()
+{
+	return;
 }
