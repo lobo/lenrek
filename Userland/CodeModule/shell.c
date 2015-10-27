@@ -4,16 +4,16 @@
 #include "string.h"
 
 
-typedef void (*fptr)(void);										
+typedef void (*fptr)(void);
 
 //comandos
-char * shell_commands[] = {"systime", "setsystime", "changecolor", 
-						   "clear", "screensavertimer", "help"} ;
+char * shell_commands[] = {"systime", "setsystime", "changecolor",
+						   "clear", "screensavertimer", "playsound", "help"} ;
 
 //punteros a funciones correspondientes
-fptr shell_functions[] = {print_system_time, change_system_time, 
-						  change_text_color, clearscreen, 
-						  screensavertimer, help} ;
+fptr shell_functions[] = {print_system_time, change_system_time,
+						  change_text_color, clearscreen,
+						  screensavertimer, playsound, help} ;
 
 int command;
 char input_char;
@@ -22,7 +22,7 @@ char command_buffer[BUFFERLENGTH] = {0};
 
 /* funcion del shell */
 void shell()
-{	
+{
 	int i;
 
 	while(1)
@@ -30,7 +30,7 @@ void shell()
 		command = NOT_VALID;
 		printString(PROMPT);
 		getString(command_buffer, BUFFERLENGTH);
-		
+
 		for(i = 0 ; i < 6 && command == NOT_VALID ; i++)
 		{
 			if( parse_command(shell_commands[i], command_buffer) )
@@ -41,7 +41,7 @@ void shell()
 		}
 		if(command == NOT_VALID)
 				printString(TYPEHELP);
-		
+
 	}
 }
 
@@ -70,6 +70,7 @@ void help()
 	printString("help - mostrar lista de comandos\n");
 	printString("clear - borrar el texto de la pantalla\n");
 	printString("screensavertimer - setear tiempo de protector de pantallas\n");
+	printString("playsound - reproduce un sonido durante un tiempo determinado\n");
 	printString("----------------------------------------------------------\n");
 
 	return;
@@ -79,7 +80,7 @@ void help()
 void screensavertimer()
 {
 	int n;
-	
+
 	printString("Ingrese en segundos un tiempo de ");
 	printString("activacion para el salvapantallas: ");
 	if(getInt(&n, 9) == INPUTERROR)
