@@ -1,14 +1,12 @@
 include Makefile.inc
 
-SAMPLE_DATA=0001-sampleDataModule.bin
-
 all: CodeModule DataModule
 
 CodeModule:
 	cd CodeModule; make
 
 DataModule:
-	printf "This is sample data." >> $(SAMPLE_DATA) && dd if=/dev/zero bs=1 count=1 >> $(SAMPLE_DATA)
+	printf "This is sample data." >> DataModule.bin && dd if=/dev/zero bs=1 count=1 >> DataModule.bin
 
 clean:
 	cd CodeModule; make clean

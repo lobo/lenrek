@@ -6,6 +6,7 @@ GLOBAL change_color
 GLOBAL clear_screen
 GLOBAL set_ss_timer
 GLOBAL timer_tick
+GLOBAL play_sound
 
 %macro pushaq 0
     push rax
