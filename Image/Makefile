@@ -8,7 +8,7 @@ VMDK=$(OSIMAGENAME).vmdk
 QCOW2=$(OSIMAGENAME).qcow2
 IMG=$(OSIMAGENAME).img
 KERNEL=../Kernel/kernel.bin
-USERLAND=$(wildcard ../Userland/*.bin)
+USERLAND=../Userland/0000-sampleCodeModule.bin ../Userland/0001-sampleDataModule.bin
 
 PACKEDKERNEL=packedKernel.bin
 IMGSIZE=6291456
@@ -22,10 +22,10 @@ $(PACKEDKERNEL): $(KERNEL) $(USERLAND)
 	$(MP) $(KERNEL) $(USERLAND) -o $(PACKEDKERNEL)
 
 $(IMG): $(BMFS) $(MBR) $(PURE64) $(PACKEDKERNEL)
-	$(BMFS) $(IMG) initialize $(IMGSIZE) $(MBR) $(PURE64) $(PACKEDKERNEL) 
+	$(BMFS) $(IMG) initialize $(IMGSIZE) $(MBR) $(PURE64) $(PACKEDKERNEL)
 
 $(VMDK): $(IMG)
-	qemu-img convert -f raw -O vmdk $(IMG) $(VMDK) 
+	qemu-img convert -f raw -O vmdk $(IMG) $(VMDK)
 
 $(QCOW2): $(IMG)
 	qemu-img convert -f raw -O qcow2 $(IMG) $(QCOW2)
