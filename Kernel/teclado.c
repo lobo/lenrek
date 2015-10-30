@@ -140,7 +140,6 @@ unsigned char translate_keyboard_input(unsigned char input)
    disponible envia cero */
 void sys_readKeyboard(char * inputdestination)
 {
-	int i;
 
 	if(buffer_status == NO_INPUT)
 		inputdestination[0] = NO_INPUT;

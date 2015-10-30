@@ -5,6 +5,10 @@ char * meses[] = {"Enero", "Febrero", "Marzo", "Abril", "Mayo",
 					"Junio", "Julio", "Agosto", "Septiembre", "Octubre", 
 					"Noviembre", "Diciembre" } ;
 
+extern int read_system_time(int a, unsigned char *c);
+extern int set_system_time(int a, unsigned char *c);
+extern int tolower(unsigned char c);
+
 void print_system_time()
 {
 	int i = 0, k = 0;
@@ -43,7 +47,7 @@ void print_system_time()
 	string[i++] = (rtcdata[5] & 0xF) + '0';
 	string[i++] = 0;
 	
-	printString(string);
+	printString((char*)string);
 	putChar('\n');
 
 
@@ -58,7 +62,7 @@ void change_system_time()
 
 	printString("Cambiar hora del sistema? (S/N) ");
 	
-	getString(buffer, 100);	
+	getString((char*)buffer, 100);	
 
 	option = buffer[0];
 
@@ -119,17 +123,17 @@ void change_system_time()
 
 unsigned char tobcd(int input)
 {
-	unsigned char output_char = 0, aux;
+	unsigned char output_char = 0;
 
-	aux = input / 10;
+	unsigned char aux = input / 10;
 	
 	aux = aux * 16;
-	aux & 0xF0;
+	aux = aux & 0xF0;
 
 	output_char += aux;
 
 	aux = input % 10;
-	aux & 0x0F;
+	aux = aux & 0x0F;
 
 	output_char += aux;
 

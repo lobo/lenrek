@@ -7,6 +7,8 @@
 
 typedef void (*fptr)(void);
 
+extern int set_ss_timer(int n);
+
 //comandos
 char * shell_commands[] = {"systime", "setsystime", "changecolor",
 						   "clear", "screensavertimer", "playsound", "help"} ;

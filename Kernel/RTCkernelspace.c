@@ -2,6 +2,9 @@
 
 unsigned char rtc_registers[] = {SEGS, MINS, HRS, DIA, MES, ANIO};
 
+extern int write_byte_to_port_0x70(unsigned char c);
+extern int write_byte_to_port_0x71(char c);
+extern int read_byte_from_port_0x71();
 
 void read_rtc_time(char * str, unsigned long len)
 {

@@ -15,7 +15,6 @@ void get_input(char * c)
 /* invoca un getString de longitud 1 */
 char getChar()
 {
-	char c[10];
 
 	getString(buffer, 1);
 
