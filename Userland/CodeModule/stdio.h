@@ -59,4 +59,6 @@ void printBase(int value, int base);
 
 int uintToBase(int value, char * buffer, int base);
 
+void play_sound();
+
 #endif

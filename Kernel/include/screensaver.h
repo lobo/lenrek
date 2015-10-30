@@ -13,4 +13,6 @@ void screensavertimer();
 
 void displayscreensaver();
 
+void set_ss_timeout(unsigned long n);
+
 #endif
