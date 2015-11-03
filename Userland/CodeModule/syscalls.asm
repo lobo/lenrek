@@ -186,4 +186,3 @@ play_sound:
    and     al, 11111100b   ; Reset bits 1 and 0.
    out     61h, al         ; Send new value.
    ret
-z
