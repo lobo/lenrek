@@ -1,4 +1,5 @@
 #include"stdio.h"
+#include"string.h"
 #include"lib.h"
 
 #define MAX_DATA 100
@@ -22,7 +23,7 @@ char getChar()
 }
 
 /* llama al system call write con longitud 1 */
-void putChar(const char c)
+void putChar(char c)
 {
 	write(1, &c); // system call
 }
@@ -118,7 +119,7 @@ int isdigit(unsigned char c)
 }
 
 /* traduce un string de un numero hexadecimal */
-int htoi(const char *str, unsigned long *result)
+int htoi(const char *str, int *result)
 {
 	int c;
 
@@ -348,7 +349,7 @@ void saveDec(int * value, char * buf)
 
 void saveHex(int * value, char * buf)
 {
-	uintToBase(value, buf, 16);
+	uintToBase(*value, buf, 16);
 	*value = stoi(buf);
 }
 

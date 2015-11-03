@@ -1,4 +1,3 @@
-
 #ifndef IO_H
 #define IO_H
 
@@ -23,6 +22,3 @@ unsigned char tolower(unsigned char c);
 void trim(char* str);
 
 #endif
-
-
-

@@ -17,10 +17,10 @@ int strcmp(char * s1, char * s2)
 	int i = 0, c = 0;
 	while(c == 0)
 	{
-		c = s1[i] - s2 [i];		
+		c = s1[i] - s2 [i];
 		i++;
 	}
-	return c;		
+	return c;
 }
 
 /* copia un string de una posicion de memoria a otra */
@@ -42,7 +42,7 @@ char * lowerString(char * s)
                         *s = *s - 'A' + 'a';
                 s++;
         }
-
+		return 0;
 }
 
 /* saca los espacios al comienzo y al final de un string */
@@ -88,7 +88,3 @@ unsigned char tolower(unsigned char c)
 			c = c - 'A' + 'a';
 	return c;
 }
-
-
-
-

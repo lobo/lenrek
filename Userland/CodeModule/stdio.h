@@ -12,7 +12,7 @@
 #define NO_INPUT 0
 
 #define INPUTERROR 0
-#define INPUT_ERROR_EXIT { printString("Input Errado!\n"); return ; }
+#define INPUT_ERROR_EXIT { printString("Input Errado!\n");}
 
 void get_input(char * c);
 
@@ -34,7 +34,7 @@ int isdigit(unsigned char);
 
 int stoi(char *);
 
-int htoi(const char *, unsigned long *);
+int htoi(const char *, int *);
 
 void change_text_color();
 
