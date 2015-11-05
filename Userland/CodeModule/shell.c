@@ -16,7 +16,7 @@ char * shell_commands[] = {"systime", "setsystime", "changecolor",
 //punteros a funciones correspondientes
 fptr shell_functions[] = {print_system_time, change_system_time,
 						  change_text_color, clearscreen,
-						  screensavertimer, playsound, help} ;
+						  screensavertimer, play_sound, help} ;
 
 int command;
 char input_char;

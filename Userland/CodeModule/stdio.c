@@ -408,8 +408,8 @@ int uintToBase(int value, char * buffer, int base)
 }
 
 /* This function plays a sound */
-void playsound()
+void play_sound()
 {
-	play_sound();
+	play_sound_sys();
 	return;
 }

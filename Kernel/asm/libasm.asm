@@ -6,6 +6,7 @@ GLOBAL mascaraPIC1,mascaraPIC2
 GLOBAL write_byte_to_port_0x70
 GLOBAL write_byte_to_port_0x71
 GLOBAL read_byte_from_port_0x71
+GLOBAL play_sound_asm
 
 
 extern keyboard_interrupt
@@ -128,3 +129,19 @@ write_byte_to_port_0x71:		; Se comunica con el RTC
 	mov rax, rdi
 	out 0x71, al
 	ret
+
+play_sound_asm:
+
+	mov     al, 182         ; Prepare the speaker for the
+	out     43h, al         ;  note.
+	mov     ax, 4560        ; Frequency number (in decimal)
+	                        ;  for middle C.
+	out     42h, al         ; Output low byte.
+	mov     al, ah          ; Output high byte.
+	out     42h, al 
+	in      al, 61h         ; Turn on note (get value from
+	                        ;  port 61h).
+	or      al, 3			  ; Set bits 1 and 0.
+	out     61h, al         ; Send new value.
+	ret
+

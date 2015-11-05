@@ -38,6 +38,7 @@ void * getStackBase()
 void * initializeKernelBinary()
 {
 
+
 	ncPrint("[x64BareBones]");
 	ncNewline();
 

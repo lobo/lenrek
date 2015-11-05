@@ -40,9 +40,9 @@ void change_text_color();
 
 void clearscreen();
 
-void playsound();
-
 void timertick();
+
+void play_sound();
 
 /* Funciones de la catedra */
 void saveDec(int * value, char * buf);
@@ -58,7 +58,5 @@ void printBin(int value);
 void printBase(int value, int base);
 
 int uintToBase(int value, char * buffer, int base);
-
-void play_sound();
 
 #endif

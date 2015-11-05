@@ -4,6 +4,8 @@
 #include <video.h>
 #include <screensaver.h>
 #include <RTCkernelspace.h>
+#include <sound.h>
+
 
 int timertick = 0;
 
@@ -66,6 +68,12 @@ void timer_tick(char * str)
 	*str = timertick;
 }
 
+/* sys call 0xB */
+void play_sound_idt()
+{
+	play_sound();
+}
+
 /* maneja los system calls */
 void syscall_handler(uint64_t str, uint64_t len, uint64_t syscall)
 {
@@ -80,6 +88,7 @@ void syscall_handler(uint64_t str, uint64_t len, uint64_t syscall)
 		case 0x8: clearscreen(); break;
 		case 0x9: set_ss_timeout(len); break;
 		case 0xA: timer_tick((char *)str); break;
+		case 0xB: play_sound_idt(); break;
 	}
 	return ;
 }

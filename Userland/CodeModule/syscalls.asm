@@ -6,7 +6,7 @@ GLOBAL change_color
 GLOBAL clear_screen
 GLOBAL set_ss_timer
 GLOBAL timer_tick
-GLOBAL play_sound
+GLOBAL play_sound_sys
 
 %macro pushaq 0
     push rax
@@ -159,30 +159,16 @@ timer_tick:
 	pop rbp
 	ret
 
-play_sound:
-  mov     al, 182     ; Prepare the speaker for the
-  out     43h, al     ;  note.
-  mov     ax, 2280    ; Frequency number (in decimal)
-                      ;  for C.
-  out     42h, al     ; Output low byte.
-  mov     al, ah      ; Output high byte.
-  out     42h, al
-  in      al, 61h     ; Turn on note (get value from
-                      ;  port 61h).
-  or      al, 00000011b   ; Set bits 1 and 0.
-  out     61h, al         ; Send new value.
-  mov     bx, 4       ; Pause for duration of note.
+play_sound_sys:
 
+	push rbp
+	mov rbp, rsp
+					 ;Se usa la convecion de linux
+	mov rax, 0xB ;Se hace la llamada al systema para hacer ruido
+	mov rdx, rdi ;
+	mov rcx, rsi ;
+	int 80h
 
-.pause1:
-   mov     cx, 65535
-.pause2:
-   dec     cx
-   jne     .pause2
-   dec     bx
-   jne     .pause1
-   in      al, 61h         ; Turn off note (get value from
-                           ;  port 61h).
-   and     al, 11111100b   ; Reset bits 1 and 0.
-   out     61h, al         ; Send new value.
-   ret
+	mov rsp, rbp
+	pop rbp
+	ret
