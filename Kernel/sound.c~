@@ -47,7 +47,7 @@ void soundtimer()
 	if(soundstatus == ON);
 		sound_timer++;
 		
-	if(sound_timer >= s_timeout && soundstatus == ON)
+	if(sound_timer > s_timeout && soundstatus == ON)
 	{
 		suppress_sound();
 	}	

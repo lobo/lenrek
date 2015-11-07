@@ -158,6 +158,9 @@ stop_sound_asm:
 	push rbp
 	mov rbp, rsp
 
+.hola
+	jmp .hola
+
 	mov al, 0
         out 61h, al         ; stop sound
 

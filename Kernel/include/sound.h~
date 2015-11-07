@@ -1,6 +1,6 @@
 #ifndef SOUND_H
 #define SOUND_H
-#define TICKS_PER_SECOND 0.0182
+#define TICKS_PER_SECOND 0.00182
 #define ON 1
 #define OFF 0
 #define S_WAS_ON 1

@@ -340,13 +340,6 @@ void timertick()
 		timer_tick(&flag); //system call
 }
 
-/* This function plays a sound */
-void play_sound(int freq, int time)
-{
-	play_sound_sys(freq, time);
-	return;
-}
-
 /********** Funciones de la catedra **********/
 void saveDec(int * value, char * buf)
 {
@@ -414,3 +407,9 @@ int uintToBase(int value, char * buffer, int base)
 	return digits;
 }
 
+/* This function plays a sound */
+void play_sound(int freq, int time)
+{
+	play_sound_sys(freq, time);
+	return;
+}

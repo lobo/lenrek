@@ -41,7 +41,7 @@ void keyboard_interrupt(unsigned short entrada)
 {	
 	unsigned char valor;
 	
-	if(suppress_sound() == S_WAS_ON)
+	if(suppress_screensaver() == SS_WAS_ON)
 		return ;
 
 	if(suppress_screensaver() == SS_WAS_ON)
