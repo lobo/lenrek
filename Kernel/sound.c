@@ -11,11 +11,21 @@ unsigned int soundstatus = OFF;
 
 float s_timeout = 0;
 
-void play_sound(uint64_t freq, float time)
+void play_beep(uint64_t freq, uint64_t time)
 {	
+	float time_float = time;
 	soundstatus = ON;
-	s_timeout = (time)*TICKS_PER_SECOND;
+	s_timeout = (time_float)*TICKS_PER_SECOND;
 	play_sound_asm(freq);
+	return;
+}
+
+void play_music()
+{	
+
+	soundstatus = ON;
+	s_timeout = (10000)*TICKS_PER_SECOND;
+	//play_sound_asm(SONG);
 	return;
 }
 

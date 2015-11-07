@@ -340,10 +340,17 @@ void timertick()
 		timer_tick(&flag); //system call
 }
 
-/* This function plays a sound */
-void play_sound(int freq, int time)
+/* This function plays music */
+void play_music()
 {
-	play_sound_sys(freq, time);
+	play_music_sys();
+	return;
+}
+
+/* This function plays a sound */
+void play_beep(int freq, int time)
+{
+	play_beep_sys(freq, time);
 	return;
 }
 

@@ -6,7 +6,7 @@ CodeModule:
 	cd CodeModule; make
 
 DataModule:
-	printf "4650, 1000" >> DataModule.bin && dd if=/dev/zero bs=1 count=1 >> DataModule.bin
+	
 
 clean:
 	cd CodeModule; make clean

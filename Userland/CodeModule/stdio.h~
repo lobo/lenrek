@@ -44,7 +44,7 @@ void timertick();
 
 void play_music();
 
-void play_beep(int freq, int time);
+void play_beep();
 
 /* Funciones de la catedra */
 void saveDec(int * value, char * buf);

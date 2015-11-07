@@ -15,8 +15,6 @@ int main() {
 	//Clean BSS
 	memset(&bss, 0, &endOfBinary - &bss);
 
-	play_sound(4650, 1000);
-
 	shell();
 
 	return 0;

@@ -79,6 +79,8 @@ int getInt(int * num, const int size)
 
 	getString(buffer, 100);
 
+	printString(buffer);
+
 	while(buffer[i] != '\n')
 	{
 		if(! isdigit(buffer[i]) )
@@ -340,6 +342,20 @@ void timertick()
 		timer_tick(&flag); //system call
 }
 
+/* This function plays music */
+void play_music()
+{
+	play_music_sys();
+	return;
+}
+
+/* This function plays a sound */
+void play_beep(int freq, int time)
+{
+	play_beep_sys(freq, time);
+	return;
+}
+
 /********** Funciones de la catedra **********/
 void saveDec(int * value, char * buf)
 {
@@ -407,9 +423,3 @@ int uintToBase(int value, char * buffer, int base)
 	return digits;
 }
 
-/* This function plays a sound */
-void play_sound(int freq, int time)
-{
-	play_sound_sys(freq, time);
-	return;
-}

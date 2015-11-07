@@ -6,7 +6,8 @@ GLOBAL change_color
 GLOBAL clear_screen
 GLOBAL set_ss_timer
 GLOBAL timer_tick
-GLOBAL play_sound_sys
+GLOBAL play_music_sys
+GLOBAL play_beep_sys
 
 %macro pushaq 0
     push rax
@@ -159,12 +160,26 @@ timer_tick:
 	pop rbp
 	ret
 
-play_sound_sys:
+play_music_sys:
 
 	push rbp
 	mov rbp, rsp
 					 ;Se usa la convecion de linux
 	mov rax, 0xB ;Se hace la llamada al systema para hacer ruido
+	mov rdx, rsi ;
+	mov rcx, rdi ;
+	int 80h
+
+	mov rsp, rbp
+	pop rbp
+	ret
+
+play_beep_sys:
+
+	push rbp
+	mov rbp, rsp
+					 ;Se usa la convecion de linux
+	mov rax, 0xC ;Se hace la llamada al systema para hacer ruido
 	mov rdx, rsi ;
 	mov rcx, rdi ;
 	int 80h

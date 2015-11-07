@@ -107,18 +107,4 @@ void beep()
 	play_beep(freq, time);
 }
 
-void music()
-{
-	int freq;
-	int time;
-
-	printString("Ingrese una frecuencia:");
-	if(getInt(&freq, 9) == INPUTERROR)
-		INPUT_ERROR_EXIT;
-	printString("Ingrese una duracion en ms:");
-	if(getInt(&time, 9) == INPUTERROR)
-		INPUT_ERROR_EXIT;
-	play_beep(freq, time);
-}
-
 

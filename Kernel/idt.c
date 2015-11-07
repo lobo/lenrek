@@ -73,9 +73,15 @@ void timer_tick(char * str)
 }
 
 /* sys call 0xB */
-void play_sound_idt(uint64_t freq, uint64_t time)
+void play_music_idt()
 {
-	play_sound(freq, time);
+	play_music();
+}
+
+/* sys call 0xB */
+void play_beep_idt(uint64_t freq, uint64_t time)
+{
+	play_beep(freq, time);
 }
 
 /* maneja los system calls */
@@ -92,7 +98,8 @@ void syscall_handler(uint64_t str, uint64_t len, uint64_t syscall)
 		case 0x8: clearscreen(); break;
 		case 0x9: set_ss_timeout(len); break;
 		case 0xA: timer_tick((char *)str); break;
-		case 0xB: play_sound_idt(str, len); break;
+		case 0xB: play_music_idt(); break;
+		case 0xC: play_beep_idt(str, len); break;
 	}
 	return ;
 }
