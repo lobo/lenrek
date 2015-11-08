@@ -47,7 +47,7 @@ void keyboard_interrupt(unsigned short entrada)
 
 	valor = translate_keyboard_input(entrada);
 
-	if(valor == '\n' && suppress_sound() == S_WAS_ON)
+	if(valor == 'z' && suppress_sound() == S_WAS_ON)
 		return ;
 	
 	if(valor != IGNORE)

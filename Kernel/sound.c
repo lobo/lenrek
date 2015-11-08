@@ -24,7 +24,7 @@ uint32_t playingsong = OFF;
 
 uint32_t lastsongindex = 0;
 
-uint32_t ENTER = OFF;
+uint32_t Z = OFF;
 
 void play_beep(uint32_t freq, uint32_t time)
 {	
@@ -55,7 +55,7 @@ void play_music()
 void stop_sound()
 {	
 	stop_sound_asm();
-	if(playingsong == ON && ENTER == OFF){
+	if(playingsong == ON && Z == OFF){
 		play_music();
 	}
 	else
@@ -72,9 +72,9 @@ int suppress_sound()
 {	
 	if(soundstatus == ON)
 	{
-		ENTER = ON;
+		Z = ON;
 		stop_sound();
-		ENTER = OFF;
+		Z = OFF;
 		return S_WAS_ON;
 	}
 	

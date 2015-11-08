@@ -6,7 +6,6 @@
 #define OFF 0
 #define S_WAS_ON 1
 #define S_IS_OFF 0
-#define SONG (void*)0x500000
 #define G3S 11492
 #define A3 10847
 #define C4 9121

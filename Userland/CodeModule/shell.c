@@ -110,7 +110,7 @@ void music()
 {
 	play_music();
 	in_special_command = 1;
-	printString("Pulse ENTER para detener el sonido");
+	printString("Pulse Z para detener el sonido");
 }
 
 void beep()
@@ -126,7 +126,7 @@ void beep()
 		INPUT_ERROR_EXIT;
 	play_beep(freq, time);
 	in_special_command = 1;
-	printString("Pulse ENTER para detener el sonido");
+	printString("Pulse Z para detener el sonido");
 }
 
 
