@@ -166,6 +166,8 @@ play_music_sys:
 	mov rbp, rsp
 					 ;Se usa la convecion de linux
 	mov rax, 0xB ;Se hace la llamada al systema para hacer ruido
+	mov rdx, rsi ;
+	mov rcx, rdi ;
 	int 80h
 
 	mov rsp, rbp
