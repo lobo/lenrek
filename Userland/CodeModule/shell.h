@@ -4,6 +4,7 @@
 #define INPUT_READY 1
 #define NO_INPUT 0
 #define PROMPT ">> "
+#define PROMPT2 "\n>> "
 #define PROMPTLENGTH 3
 
 #define VALID 1

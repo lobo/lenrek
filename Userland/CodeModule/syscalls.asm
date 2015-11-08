@@ -179,7 +179,7 @@ play_beep_sys:
 	push rbp
 	mov rbp, rsp
 					 ;Se usa la convecion de linux
-	mov rax, 0xC ;Se hace la llamada al systema para hacer ruido
+	mov rax, 0xC ;			;Se hace la llamada al systema para hacer ruido
 	mov rdx, rsi ;
 	mov rcx, rdi ;
 	int 80h

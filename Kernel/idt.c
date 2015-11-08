@@ -8,6 +8,7 @@
 
 
 int timertick = 0;
+int t = 0;
 
 void setup_idt()
 {
@@ -40,14 +41,14 @@ void idt_set_entry(idt_entry * idt_entries, unsigned char index,
 void keyboard_interrupt(unsigned short entrada)
 {	
 	unsigned char valor;
-	
-	if(suppress_sound() == S_WAS_ON)
-		return ;
 
 	if(suppress_screensaver() == SS_WAS_ON)
 		return ;
 
 	valor = translate_keyboard_input(entrada);
+
+	if(valor == '\n' && suppress_sound() == S_WAS_ON)
+		return ;
 	
 	if(valor != IGNORE)
 		to_input_buffer(valor);
@@ -58,8 +59,9 @@ void keyboard_interrupt(unsigned short entrada)
 /* maneja los interrupts del PIT */
 void timer_interrupt()
 {
-	screensavertimer();
 	soundtimer();
+
+	screensavertimer();
 
 	timertick = (timertick+1)%2;
 
@@ -78,7 +80,7 @@ void play_music_idt()
 	play_music();
 }
 
-/* sys call 0xB */
+/* sys call 0xC */
 void play_beep_idt(uint64_t freq, uint64_t time)
 {
 	play_beep(freq, time);
@@ -87,7 +89,6 @@ void play_beep_idt(uint64_t freq, uint64_t time)
 /* maneja los system calls */
 void syscall_handler(uint64_t str, uint64_t len, uint64_t syscall)
 {
-
 	switch(syscall)
 	{
 		case 0x3: sys_readKeyboard((char *)str); break;

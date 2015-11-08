@@ -3,9 +3,11 @@
 #include "RTCuserspace.h"
 #include "string.h"
 
-#define CANT_COMMANDS_SHELL 7
+#define CANT_COMMANDS_SHELL 8
 
 typedef void (*fptr)(void);
+
+int in_special_command = 0;
 
 extern int set_ss_timer(int n);
 
@@ -31,7 +33,15 @@ void shell()
 	while(1)
 	{
 		command = NOT_VALID;
-		printString(PROMPT);
+		if(!in_special_command)
+		{
+			printString(PROMPT);
+		}
+		else
+		{
+			printString(PROMPT2);
+			in_special_command = 0;
+		}
 		getString(command_buffer, BUFFERLENGTH);
 
 		for(i = 0 ; i < CANT_COMMANDS_SHELL && command == NOT_VALID ; i++)
@@ -43,7 +53,9 @@ void shell()
 			}
 		}
 		if(command == NOT_VALID)
-				printString(TYPEHELP);
+		{
+			printString(TYPEHELP);
+		}
 
 	}
 }
@@ -73,7 +85,8 @@ void help()
 	printString("help - mostrar lista de comandos\n");
 	printString("clear - borrar el texto de la pantalla\n");
 	printString("screensavertimer - setear tiempo de protector de pantallas\n");
-	printString("playsound - reproduce un sonido durante un tiempo determinado\n");
+	printString("beep - reproduce un sonido durante un tiempo determinado\n");
+	printString("music - reproduce una cancion\n");
 	printString("----------------------------------------------------------\n");
 
 	return;
@@ -93,6 +106,12 @@ void screensavertimer()
 	set_ss_timer(n); // system call
 }
 
+void music()
+{
+	printString("Pulse ENTER para detener el sonido");
+	play_music();
+}
+
 void beep()
 {
 	int freq;
@@ -105,6 +124,9 @@ void beep()
 	if(getInt(&time, 9) == INPUTERROR)
 		INPUT_ERROR_EXIT;
 	play_beep(freq, time);
+	in_special_command = 1;
+	printString("Pulse ENTER para detener el sonido");
 }
+
 
 

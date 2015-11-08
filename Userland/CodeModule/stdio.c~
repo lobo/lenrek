@@ -50,7 +50,7 @@ void getString(char *buffer, const int size)
 
 		if(input_char != NO_INPUT)
 		{
-			if( ! (input_char == '\b' && len == 0) )
+			if( ! (input_char == c && len == 0) )
 			{
 				putChar(input_char);
 
@@ -78,8 +78,6 @@ int getInt(int * num, const int size)
 	char buffer[100];
 
 	getString(buffer, 100);
-
-	printString(buffer);
 
 	while(buffer[i] != '\n')
 	{

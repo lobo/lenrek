@@ -13,6 +13,7 @@ typedef struct idt_entry_struct
    unsigned int always0_2;
 } idt_entry;
 
+int htoi(const char *str, int *result);
 
 void idt_set_entry(idt_entry *, unsigned char, unsigned long, 
 										unsigned short, unsigned char);
