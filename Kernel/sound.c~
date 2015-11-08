@@ -1,6 +1,7 @@
 #include <sound.h>
 #include <stdint.h>
 
+/*cancion*/
 uint32_t arraySong[44] = {C5, C5, C5, G5, G5, A5, A5, G5, F5, F5, E5, E5, D5, D5, C5,
 			F5, F5, E5, E5, D5, D5, C5, F5, F5, E5, E5, D5, D5, C5,
 			C5, C5, G5, G5, A5, A5, G5, F5, F5, E5, E5, D5, D5, C5, 0};
@@ -9,6 +10,7 @@ float arrayTime[44] = {500, 500, 500, 500, 500, 500, 500, 1000, 500, 500, 500,
 			500, 500, 500, 1000, 500, 500, 500, 500, 500, 500,
 			1000, 500, 500, 500, 500, 500, 500, 1000, 500, 500,
 			500, 500, 500, 500, 1000, 500, 500, 500, 500, 500, 500, 1000, 0};
+/*--------*/
 
 extern uint64_t play_sound_asm(uint32_t freq);
 
@@ -26,6 +28,7 @@ uint32_t lastsongindex = 0;
 
 uint32_t Z = OFF;
 
+/*Pone el timer en 0 y activa el sonido*/
 void play_beep(uint32_t freq, uint32_t time)
 {	
 	sound_timer = 0;
@@ -35,6 +38,7 @@ void play_beep(uint32_t freq, uint32_t time)
 	return;
 }
 
+/*Recorre la cancion y la va reproduciendo*/
 void play_music()
 {			
 	if(arraySong[lastsongindex++] != 0){
@@ -52,10 +56,13 @@ void play_music()
 	return;
 }
 
+
+/*Para el sonido porque ya se acabó el tiempo o alguien tocó la tecla indicada,
+ si todavía se estaba reproduciendo una cancion entonces la sigue reproduciendo*/
 void stop_sound()
 {	
 	stop_sound_asm();
-	if(playingsong == ON && ENTER == OFF){
+	if(playingsong == ON && Z == OFF){
 		play_music();
 	}
 	else

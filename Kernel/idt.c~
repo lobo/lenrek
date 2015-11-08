@@ -37,7 +37,7 @@ void idt_set_entry(idt_entry * idt_entries, unsigned char index,
    idt_entries[index].flags = flags;
 }
 
-/* maneja los interrupts del teclado, puede ser que tambien pare el sonido debido a una tecla */
+/* maneja los interrupts del teclado */
 void keyboard_interrupt(unsigned short entrada)
 {	
 	unsigned char valor;

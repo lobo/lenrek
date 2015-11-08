@@ -86,7 +86,7 @@ void help()
 	printString("clear - borrar el texto de la pantalla\n");
 	printString("screensavertimer - setear tiempo de protector de pantallas\n");
 	printString("beep - reproduce un sonido durante un tiempo determinado\n");
-	printString("music - reproduce una cancion\n");
+	printString("music - reproduce una cancion (estrellita)\n");
 	printString("----------------------------------------------------------\n");
 
 	return;
@@ -106,6 +106,7 @@ void screensavertimer()
 	set_ss_timer(n); // system call
 }
 
+/*Reproduce la musica*/
 void music()
 {
 	play_music();
@@ -113,6 +114,7 @@ void music()
 	printString("Pulse Z para detener el sonido");
 }
 
+/*Reproduce el beep*/
 void beep()
 {
 	int freq;
