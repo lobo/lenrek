@@ -30,8 +30,7 @@ void play_beep(uint32_t freq, uint32_t time)
 	sound_timer = 0;
 	soundstatus = ON;
 	s_timeout = (((float)time)/1000)*TICKS_PER_SECOND;
-	if(freq != 0)
-		play_sound_asm(freq);
+	play_sound_asm(freq);
 	return;
 }
 

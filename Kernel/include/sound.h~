@@ -32,7 +32,7 @@
 #define A5 2711
 #define A5S 2559
 #define B5 2415
-#define C6 2280
+#define C6 2000
 #define SILENCE 0
 
 void play_music();
